@@ -1,0 +1,175 @@
+* {
+    vertical-align: baseline;
+    font-family: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+* {
+    vertical-align: baseline;
+    font-family: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.inlineBlock {
+    display: inline-block;
+}
+
+.loginMargins {
+    margin-top: 100px;  
+}
+
+.inputMargins {
+    margin-top: 10px;
+}
+.loginForm {
+    vertical-align: top;
+}
+.navTitle {
+    font-size: 25px;
+    margin: 0px;
+    margin-right: 20px;
+    color: white !important;
+}
+.myNavbar {
+    background-color: red;
+}
+.catList {
+    list-style-type: none;
+}
+.myNavLink {
+    color: white !important;
+    transition: 0.5s;
+}
+#myActive {
+    text-decoration: underline;
+}
+.nPButton {
+    color: black;
+    background-color: lightcoral;
+    border-radius: 2px;
+    padding: 5px;
+    margin: 5px;
+    border-style: solid;
+    border-width: 2px;
+}
+.flashes{
+    list-style-type: none;
+}
+.inputError {
+    color: red;
+}
+.logout {
+    color: black;
+    background-color: lightcoral;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: solid;
+    border-color: white;
+    border-width: 1px;
+}
+.adminLabels {
+    padding: 3px;
+}
+.adminInput {
+    background-color: lightgray;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+}
+.adminSelect {
+    background-color: lightgray;
+}
+.submitButton {
+    color: white;
+    background-color: blue;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: solid;
+    border-color: white;
+    border-width: 2px;
+}
+.cancelButton {
+    color: black;
+    background-color: lightgray;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: solid;
+    border-color: white;
+    border-width: 2px;
+}
+.input1 {
+    display: block;
+    margin-left: 31px;
+}
+.input2 {
+    display: block;
+    margin-left: 31px;
+}
+.input3 {
+    display: block;
+    margin-left: 69px;
+}
+.input4 {
+    display: block;
+    margin-left: 38px;
+}
+.input5 {
+    display: block;
+    margin-left: -30px;
+}
+.flashBlock {
+    display: block;
+}
+.prodLabels {
+    padding: 3px;
+}
+.prodInput {
+    background-color: lightgray;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+}
+.prodSelect {
+    background-color: lightgray;
+}
+.product1 {
+    display: block;
+    margin-left: 36px;
+}
+.product2 {
+    display: block;
+    margin-left: 0px;
+}
+.product3 {
+    display: block;
+    margin-left: 42px;
+}
+.product4 {
+    display: block;
+    margin-left: -2px;
+}
+.spacer {
+    display: block;
+    height: 48px;
+}
+.catLabels {
+    padding: 3px;
+    display: block;
+}
+.catDiv {
+    vertical-align: top;
+    margin-top: 30px;
+}

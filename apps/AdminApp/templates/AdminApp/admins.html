@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8">
+    <title>eCommerce Dashboard - Orders</title>
+    <meta name="description" content="Users">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'AdminApp/css/style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light myNavbar">
+        <h1 class="navbar-brand navTitle">Dashboard</h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link myNavLink" href="/admin/orders">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link myNavLink" href="/admin/products">Products</a>
+                </li>
+                <li class="active" id="myActive">
+                    <a class="nav-link myNavLink" href="/admin/admins">Administrators
+                        <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form action="/admin/logout" method="post">
+                {% csrf_token %}
+                <button class="logout" type="submit">Logout</button>
+            </form>
+        </div>
+    </nav>
+    <form action="/admin/admin/new" method="post">
+        {% csrf_token %}
+        <button class="nPButton" type="submit">Add Admin</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Access Level</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for admin in admins %}
+                <tr>
+                    <th scope="row">{{ admin.id }}</th>
+                    <td>{{ admin.firstName }} {{ admin.lastName }}</td>
+                    <td>{{ admin.email }}</td>
+                    <td>{{ admin.accessLevel }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

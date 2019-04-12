@@ -1,0 +1,75 @@
+* {
+    vertical-align: baseline;
+    font-family: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.inlineBlock {
+    display: inline-block;
+}
+
+.loginMargins {
+    margin-top: 100px;  
+}
+
+.inputMargins {
+    margin-top: 10px;
+}
+.loginForm {
+    vertical-align: top;
+}
+.navTitle {
+    font-size: 25px;
+    margin: 0px;
+    margin-right: 20px;
+}
+.myNavbar {
+    background-image: linear-gradient(to right, green, white);
+    /* background-color: rgb(50, 50, 50); */
+}
+.sideBar {
+    display: inline-block;
+    vertical-align: top;
+    border: 3px solid lightgreen;
+    border-radius: 3px;
+    margin: 20px;
+    padding: 20px;
+}
+.mainDiv {
+    display: inline-block;
+    vertical-align: top;
+    border: 3px solid lightgreen;
+    border-radius: 3px;
+    margin: 20px;
+    padding: 20px;
+}
+.catList {
+    list-style-type: none;
+}
+.myNavLink {
+    color: black !important;
+    transition: 0.5s;
+}
+.myNavLink:hover {
+    color: white !important;
+}
+.flashes{
+    list-style-type: none;
+}
+.inputError {
+    color: red;
+}
+.logout {
+    color: white;
+    background-color: green;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border-color: white;
+    border-width: 1px;
+}

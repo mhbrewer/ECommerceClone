@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang=en>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>eCommerce Dashboard - Orders</title>
+        <meta name="description" content="Users">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'AdminApp/css/style.css' %}">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light myNavbar">
+            <h1 class="navbar-brand navTitle">Dashboard</h1>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link myNavLink" href="/admin/orders">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link myNavLink" href="/admin/products">Products</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1>Edit Product</h1>
+        <form action="/admin/product/new" method="post">
+            {% csrf_token %}
+            <label>Name:</label>
+            <input type="text" name="name">
+            <label>Description:</label>
+            <input type="text" name="description">
+            <label>Price:</label>
+            <input type="number" name="price">
+            <label>Category:</label>
+            <select>
+                <option value="cat1">Category 1</option>
+                <option value="cat2">Category 2</option>
+                <option value="cat3">Category 3</option>
+            </select>
+            <label>or add a new category:</label>
+            <input type="text" name="newCat">
+            Select a file: <input type="file" name="image"><br><br>
+            <button type="submit">Update</button>
+        </form>
+        <form action="/admin/products" method="get">
+            <button type="submit">Cancel</button>
+        </form>
+    </body>
+
+</html>

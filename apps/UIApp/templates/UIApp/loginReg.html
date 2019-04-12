@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang=en>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>eCommerce Clone - Login</title>
+        <meta name="description" content="Users">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'UIApp/css/style.css' %}">
+    </head>
+
+    <body>
+        <h1 class="text-center">Welcome to my eCommerce Website!</h1>
+        <div class="container loginMargins">
+            <div class="col-1 inlineBlock"></div>
+
+
+            <form class="inlineBlock col-4 text-center loginForm" action="/login/process" method="post">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            {% if message.extra_tags == "loginEmail" %}
+                                <li class='inputError'>{{ message }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <input type="text" name="email" class="form-control inputMargins" placeholder="Email Address">
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            {% if message.extra_tags == "loginPassword" %}
+                                <li class='inputError'>{{ message }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <input type="password" name="password" class="form-control inputMargins" placeholder="Password">
+                <button class="btn btn-lg btn-primary btn-block inputMargins" type="submit">Submit</button>
+            </form>
+
+
+            <div class="col-2 inlineBlock"></div>
+
+
+            <form class="inlineBlock col-4 text-center loginForm" action="/registration/process" method="post">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            {% if message.extra_tags == "firstName" %}
+                                <li class='inputError'>{{ message }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <input type="text" name="firstName" class="form-control inputMargins" placeholder="First name">
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            {% if message.extra_tags == "lastName" %}
+                                <li class='inputError'>{{ message }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <input type="text" name="lastName" class="form-control inputMargins" placeholder="Last name">
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            {% if message.extra_tags == "email" %}
+                                <li class='inputError'>{{ message }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <input type="text" name="email" class="form-control inputMargins" placeholder="Email Address">
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            {% if message.extra_tags == "password" %}
+                                <li class='inputError'>{{ message }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <input type="password" name="password" class="form-control inputMargins" placeholder="Password">
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            {% if message.extra_tags == "passwordRepeat" %}
+                                <li class='inputError'>{{ message }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <input type="password" name="passwordRepeat" class="form-control inputMargins" 
+                    placeholder="Re-enter Password">
+                <button class="btn btn-lg btn-primary btn-block inputMargins" type="submit">Submit</button>
+            </form>
+
+
+            <div class="col-1 inlineBlock"></div>
+        </div>
+    </body>
+
+</html>

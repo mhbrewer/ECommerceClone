@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang=en>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>eCommerce Dashboard - Orders</title>
+        <meta name="description" content="Users">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'AdminApp/css/style.css' %}">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light myNavbar">
+            <h1 class="navbar-brand navTitle">Dashboard</h1>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link myNavLink" href="/admin/orders">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link myNavLink" href="/admin/products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link myNavLink" href="/admin/admins">Administrators</a>
+                    </li>
+                </ul>
+                <form action="/admin/logout" method="post">
+                    {% csrf_token %}
+                    <button class="logout" type="submit">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="col-2 inlineBlock"></div>
+            <div class="inlineBlock col-6 text-center">
+                <h1>Add Product</h1>
+                <form action="/admin/product/new/process" method="post">
+                    {% csrf_token %}
+                    <div class="flashBlock">
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                    {% if message.extra_tags == "name" %}
+                                        <li class='inputError'>{{ message }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="product1">
+                        <label class="prodLabels">Name:</label>
+                        <input type="text" name="name" class="prodInput">
+                    </div>
+                    <div class="flashBlock">
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                    {% if message.extra_tags == "description" %}
+                                        <li class='inputError'>{{ message }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="product2">
+                        <label class="prodLabels">Description:</label>
+                        <input type="text" name="description" class="prodInput">
+                    </div>
+                    <div class="flashBlock">
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                    {% if message.extra_tags == "price" %}
+                                        <li class='inputError'>{{ message }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="product3">
+                        <label class="prodLabels">Price:</label>
+                        <input type="number" step="0.01" name="price" class="prodInput">
+                    </div>
+                    <div class="flashBlock">
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                    {% if message.extra_tags == "imageURL" %}
+                                        <li class='inputError'>{{ message }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="product4">
+                        <label class="prodLabels">Image URL:</label>
+                        <input type="text" name="imageURL" class="prodInput">
+                    </div>
+                    <div class="flashBlock">
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                    {% if message.extra_tags == "category" %}
+                                        <li class='inputError'>{{ message }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="selectBlock">
+                        <label>Category:</label>
+                        <select class="prodSelect" name="category">
+                            <option value="" selected disabled hidden>Choose here</option>
+                            {% for cat in categories %}
+                                <option value={{ cat.id }}>{{ cat.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Select a file: <input type="file" name="image"><br><br> -->
+                    <button type="submit" class="submitButton">Create</button>
+                </form>
+                <form action="/admin/products" method="get">
+                    <button type="submit" class="cancelButton">Cancel</button>
+                </form>
+            </div>
+            <div class="col-2 inlineBlock catDiv">
+                <form action="/admin/category/new/process" method="post">
+                    {% csrf_token %}
+                    <div class="flashBlock">
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                    {% if message.extra_tags == "title" %}
+                                        <li class='inputError'>{{ message }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <label class="prodLabels">Add a Category:</label>
+                    <input type="text" name="title" class="prodInput">
+                    <button type="submit" class="submitButton">Add</button>
+                </form>
+            </div>
+            <div class="col-2 inlineBlock"></div>
+        </div>
+    </body>
+
+</html>
