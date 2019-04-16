@@ -6,11 +6,19 @@
     <title>eCommerce Clone - Category</title>
     <meta name="description" content="Users">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'UIApp/css/style.css' %}">
 </head>
+
+<script>
+    function toProd(id) {
+        let url = "/item/" + id.toString()
+        window.location = url;
+    }
+</script>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light myNavbar">
@@ -36,10 +44,24 @@
             </form>
         </div>
     </nav>
-
-    {% for prod in catItems %}
-        <p>{{ prod.name }}</p>
-    {% endfor %}
+    <div class="sideBar">
+        <h3>Categories</h3>
+        <ul class="catList">
+            {% for cat in allCats %}
+                <li><a href=/category/{{ cat.id }}>{{ cat.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="mainDiv">
+        {% for prod in catItems %}
+            <div class="product">
+                <a class="noEffect" href=/item/{{prod.id}}>
+                    <p>{{ prod.name }}</p>
+                    <img class="productImage" src={{prod.imageURL}}>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 
 </html>

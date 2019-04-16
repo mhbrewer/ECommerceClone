@@ -65,7 +65,8 @@ def catPage(request, catId):
     else:
         thisCat = Category.objects.get(id = catId)
         context = {
-            "catItems": Product.objects.filter(category = thisCat)
+            "catItems": Product.objects.filter(category = thisCat),
+            "allCats": Category.objects.all()
         }
         return render(request, 'UIApp/category.html', context)
 # GET: Loads a specific item's page.
@@ -73,16 +74,29 @@ def itemPage(request, itemId):
     if not request.session["loggedIn"]:
         return redirect("/login")
     else:
-        return render(request, 'UIApp/item.html')
+        context = {
+            "item": Product.objects.get(id = itemId)
+        }
+        return render(request, 'UIApp/item.html', context)
 # POST: Adds an item to the current order, or creates a new order.
 def addToCart(request):
-    pass
+    if request.method == "GET":
+        return redirect("/")
+    if request.method == "POST":
+        thisUser = User.objects.get(id = request.session["currentUserId"])
+        thisItem = Product.objects.get(id = request.POST["itemId"])
+        thisUser.cart.add(thisItem)
+        return redirect("/item/" + request.POST["itemId"])
 # GET: Loads the checkout/payment page.
 def checkoutPage(request):
     if not request.session["loggedIn"]:
         return redirect("/login")
     else:
-        return render(request, 'UIApp/checkout.html')
+        thisUser = User.objects.get(id = request.session["currentUserId"])
+        context = {
+            "cart": thisUser.cart.all()
+        }
+        return render(request, 'UIApp/checkout.html', context)
 # POST: Processes the current order.
 def checkoutProcess(request):
     pass

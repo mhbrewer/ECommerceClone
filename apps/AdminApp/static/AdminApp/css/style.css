@@ -9,17 +9,6 @@
     font-family: sans-serif;
 }
 
-* {
-    vertical-align: baseline;
-    font-family: inherit;
-    font-style: inherit;
-    font-size: 100%;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
-}
-
 .inlineBlock {
     display: inline-block;
 }

@@ -99,6 +99,7 @@ class User(models.Model):
     lastName = models.CharField(max_length = 50)
     email = models.CharField(max_length = 255)
     passHash = models.CharField(max_length = 255)
+    cart = models.ManyToManyField("AdminApp.Product", related_name="carter")
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objects = UserManager()

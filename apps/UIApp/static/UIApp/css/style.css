@@ -73,3 +73,27 @@
     border-color: white;
     border-width: 1px;
 }
+.productImage {
+    width: 100px;
+}
+.product {
+    display: inline-block;
+    border: solid black 1px;
+}
+.noEffect {
+    color: black;
+}
+.noEffect:hover {
+    color: black;
+    text-decoration: none;
+}
+.submitButton {
+    color: white;
+    background-color: blue;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: solid;
+    border-color: white;
+    border-width: 2px;
+}

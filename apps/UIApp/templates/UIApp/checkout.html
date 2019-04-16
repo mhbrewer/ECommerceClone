@@ -36,7 +36,23 @@
             </form> -->
         </div>
     </nav>
-    CHECKOUT PAGE
+    <div class="sideBar">
+        <h3>Categories</h3>
+        <ul class="catList">
+            {% for cat in allCats %}
+                <li><a href=/category/{{ cat.id }}>{{ cat.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="mainDiv">
+        {% if cart != None %}
+            {% for prod in cart %}
+                <p>{{ prod.name }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No items</p>
+        {% endif %}
+    </div>
 </body>
 
 </html>
