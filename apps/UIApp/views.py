@@ -87,19 +87,66 @@ def addToCart(request):
         thisItem = Product.objects.get(id = request.POST["itemId"])
         thisUser.cart.add(thisItem)
         return redirect("/item/" + request.POST["itemId"])
-# GET: Loads the checkout/payment page.
-def checkoutPage(request):
+# GET: Loads the page showing the current user's cart.
+def cartPage(request):
     if not request.session["loggedIn"]:
         return redirect("/login")
     else:
         thisUser = User.objects.get(id = request.session["currentUserId"])
+        thisCart = thisUser.cart.all()
+        total = 0
+        for prod in thisCart:
+            total += prod.price
         context = {
-            "cart": thisUser.cart.all()
+            "cart": thisCart,
+            "total": total
         }
-        return render(request, 'UIApp/checkout.html', context)
+        return render(request, 'UIApp/cart.html', context)
+# GET: Loads the chackout page.
+def checkoutPage(request):
+    if not request.session["loggedIn"]:
+        return redirect("/login")
+    else:
+        return render(request, 'UIApp/checkout.html')
 # POST: Processes the current order.
 def checkoutProcess(request):
-    pass
+    if request.method == "GET":
+        return redirect("/checkout")
+    if request.method == "POST":
+        ## Should probably add validations in models, but for now IDC.
+        shippingAddress = ""
+        if request.POST["address1Ship"]:
+            shippingAddress += request.POST["address1Ship"]
+        if request.POST["address2Ship"]:
+            shippingAddress += " " + request.POST["address2Ship"]
+        if request.POST["cityShip"]:
+            shippingAddress += " " + request.POST["cityShip"]
+        if request.POST["stateShip"]:
+            shippingAddress += " " + request.POST["stateShip"]
+        if request.POST["zipShip"]:
+            shippingAddress += " " + request.POST["zipShip"]
+        if request.POST["billIsSame"]:
+            billingAddress = shippingAddress
+        else:
+            billingAddress = ""
+            if request.POST["address1Bill"]:
+                billingAddress += request.POST["address1Bill"]
+            if request.POST["address2Bill"]:
+                billingAddress += " " + request.POST["address2Bill"]
+            if request.POST["cityBill"]:
+                billingAddress += " " + request.POST["cityBill"]
+            if request.POST["stateBill"]:
+                billingAddress += " " + request.POST["stateBill"]
+            if request.POST["zipBill"]:
+                billingAddress += " " + request.POST["zipBill"]
+        thisUser = User.objects.get(id = request.session["currentUserId"])
+        cart = thisUser.cart.all()
+        now = datetime.datetime.now()
+        newOrder = Order.objects.create(orderer=thisUser, billingAdd=billingAddress, shippingAdd=shippingAddress,
+            status="In Process", dateSubmitted=now)
+        newOrder.products.set(cart)
+        newOrder.save()
+        return redirect("/")
 # POST: Logging a user out.
 def logout(request):
     request.session["loggedIn"] = False

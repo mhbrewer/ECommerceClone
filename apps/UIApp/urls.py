@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^category/(?P<catId>\w+)$', views.catPage),
     url(r'^item/add$', views.addToCart),
     url(r'^item/(?P<itemId>\w+)$', views.itemPage),
+    url(r'^cart$', views.cartPage),
     url(r'^checkout$', views.checkoutPage),
     url(r'^checkout/process$', views.checkoutProcess),
     url(r'^logout$', views.logout),

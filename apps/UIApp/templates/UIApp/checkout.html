@@ -10,6 +10,14 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         {% load static %}
         <link rel="stylesheet" href="{% static 'UIApp/css/style.css' %}">
+        <script src= 'https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>
+        <script>
+            $(document).ready(function(){
+                $("#tog").click(function(){
+                    $(".billAdd").toggle();
+                });
+            });
+        </script>
 </head>
 
 <body>
@@ -36,22 +44,45 @@
             </form> -->
         </div>
     </nav>
-    <div class="sideBar">
-        <h3>Categories</h3>
-        <ul class="catList">
-            {% for cat in allCats %}
-                <li><a href=/category/{{ cat.id }}>{{ cat.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="mainDiv">
-        {% if cart != None %}
-            {% for prod in cart %}
-                <p>{{ prod.name }}</p>
-            {% endfor %}
-        {% else %}
-            <p>No items</p>
-        {% endif %}
+    <div class="container">
+        <div class="col-4 inlineBlock"></div>
+        <form class="col-4 inlineBlock" action="/checkout/process" method="post">
+            {% csrf_token %}
+            <div>
+                <h3>Shipping Address</h3>
+                <label>Address Line 1:</label>
+                <input class="checkoutInput" type="text" name="address1Ship">
+                <label>Address Line 2:</label>
+                <input class="checkoutInput" type="text" name="address2Ship">
+                <label>City:</label>
+                <input class="checkoutInput" type="text" name="cityShip">
+                <label>State:</label>
+                <input class="checkoutInput" type="text" name="stateShip">
+                <label>Zip Code:</label>
+                <input class="checkoutInput" type="text" name="zipShip">
+            </div>
+            <div>
+                <h3>Billing Address</h3>
+                <div class="block">
+                    <input id="tog" class="billAddBox" type="checkbox" name="billIsSame" value="True"> 
+                        Same as Shipping Address
+                </div>
+                <div class="billAdd">
+                    <label>Address Line 1:</label>
+                    <input class="checkoutInput" type="text" name="address1Bill">
+                    <label>Address Line 2:</label>
+                    <input class="checkoutInput" type="text" name="address2Bill">
+                    <label>City:</label>
+                    <input class="checkoutInput" type="text" name="cityBill">
+                    <label>State:</label>
+                    <input class="checkoutInput" type="text" name="stateBill">
+                    <label>Zip Code:</label>
+                    <input class="checkoutInput" type="text" name="zipBill">
+                </div>
+            </div>
+            <button type="submit" class="submitButton">Submit</button>
+        </form>
+        <div class="col-4 inlineBlock"></div>
     </div>
 </body>
 

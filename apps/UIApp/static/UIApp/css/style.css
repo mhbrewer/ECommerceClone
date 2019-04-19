@@ -97,3 +97,23 @@
     border-color: white;
     border-width: 2px;
 }
+.tableLine {
+    border-left: 1px solid black;
+}
+.topLine {
+    border-bottom: 2px solid black;
+}
+.padding {
+    padding: 10px 10px 0px 10px;
+}
+.cart {
+    margin: 20px;
+}
+.checkoutInput {
+    border: 1px solid black;
+    display: block;
+    margin: -8px 0px 8px 0px;
+}
+.block {
+    display: block;
+}
